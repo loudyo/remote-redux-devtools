@@ -248,7 +248,7 @@ function handleChange(state, liftedState, maxAge) {
   }
 }
 
-export default function devToolsEnhancer(options = {}) {
+export default function devToolsEnhancer(options = { realtime: true }) {
   init({
     ...options,
     hostname: getHostForRN(options.hostname)
@@ -279,6 +279,8 @@ export default function devToolsEnhancer(options = {}) {
     };
   };
 }
+
+window.__REDUX_DEVTOOLS_EXTENSION__ = devToolsEnhancer;
 
 export function preEnhancer(createStore) {
   return (reducer, preloadedState, enhancer) => {
